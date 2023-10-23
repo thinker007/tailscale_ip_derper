@@ -15,6 +15,8 @@ jobs:
 
       - name: Update submodule
         run: |
+          git config --global user.email "297529175@qq.com"
+          git config --global user.name "ilater"
           git submodule update --remote --merge
           git add .
           git commit -m "Update submodule" || echo "No changes to commit"
