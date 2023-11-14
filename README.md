@@ -1,2 +1,2 @@
 # tailscale_ip_derper
-tailscale 无需ip的derper服务
+tailscale 无需域名的derper服务
