@@ -1,0 +1,34 @@
+[Unit]
+Description=Derper Service (Tailscale DERP Server)
+After=network.target
+
+[Service]
+Type=simple
+#User=ubuntu
+#Group=ubuntu
+ExecStart=/home/ubuntu/tailscale_ip_derper/derper \
+  --hostname=138.2.20.31 \
+  --certdir=/home/ubuntu/tailscale_ip_derper/certs \
+  --certmode=manual \
+  --stun=true  \
+  --stun-port=3478 \
+  --a=:443 \
+  --http-port=-1 \
+  --verify-clients=true  \
+  -c=/home/ubuntu/tailscale_ip_derper/certs/derper.json
+
+# Custom environment variables if needed
+# Environment=DERP_VARIABLE=value
+
+Restart=on-failure
+RestartSec=5
+LimitNOFILE=1048576
+
+# Security options
+NoNewPrivileges=yes
+ProtectSystem=full
+ProtectHome=no
+PrivateTmp=yes
+
+[Install]
+WantedBy=multi-user.target
